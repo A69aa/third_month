@@ -1,9 +1,18 @@
 from django.db import models
 
+class Book(models.Model):
 
-class Posts(models.Model):
+    GENRE_CHOICE = (
+        ('Detective', 'Detective'),
+        ('Comedy', 'Comedy'),
+        ('History', 'History'),
+        ('Fantasy', 'Fantasy'),
+        ('SelfEducation', 'SelfEducation'),
+        ('Classic','Classic')
+    )
     title = models.CharField(max_length=100)
     description  = models.TextField()
     image = models.ImageField(upload_to='')
-    create_date = models.DateTimeField(auto_now_add=True)
-    update_date = models.DateTimeField(auto_now=True)
+    genre = models.CharField(choices=GENRE_CHOICE, max_length=100, null=True)
+    data = models.DateField(auto_now_add=True, null=True)
+
